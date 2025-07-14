@@ -1,0 +1,17 @@
+{
+    "name": "ousmane/maxitsa",
+    "autoload": {
+        "psr-4": {
+            "Ousmane\\Maxitsa\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sco2000",
+            "email": "ousmanemarra70@gmail.com"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "^5.6"
+    }
+}
