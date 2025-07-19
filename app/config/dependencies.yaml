@@ -1,0 +1,13 @@
+dependencies:
+  Database: App\core\Database
+  UtilisateurRepository: App\repository\UtilisateurRepository
+  CompteRepository: App\repository\CompteRepository
+  TransactionRepository: App\repository\TransactionRepository
+  CompteService: App\service\CompteService
+  SecurityService: App\service\SecurityService
+  TransactionService: App\service\TransactionService
+  SecurityController: App\controller\SecurityController
+  CompteController: App\controller\CompteController
+  TransactionController: App\controller\TransactionController
+  Session: App\core\Session
+  auth: App\core\middlewares\Auth

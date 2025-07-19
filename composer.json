@@ -2,7 +2,15 @@
     "name": "ousmane/maxitsa",
     "autoload": {
         "psr-4": {
-            "Ousmane\\Maxitsa\\": "src/"
+            "App\\entity\\": "src/entity/",
+            "App\\service\\": "src/service/",
+            "App\\repository\\": "src/repository/",
+            "App\\core\\": "app/core/",
+            "App\\core\\abstract\\": "config/core/abstract",
+            "App\\controller\\": "src/controller/",
+            "App\\router\\": "route/",
+            "App\\core\\middlewares\\": "config/core/middlewares"
+
         }
     },
     "authors": [
@@ -12,6 +20,11 @@
         }
     ],
     "require": {
-        "vlucas/phpdotenv": "^5.6"
-    }
+        "vlucas/phpdotenv": "^5.6",
+        "symfony/yaml": "^7.3"
+    },
+    "scripts": {
+    "database:migrate": "php migrations/migration.php",
+    "database:seeder":"php seeders/seeder.php"
+  }
 }
