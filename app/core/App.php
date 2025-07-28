@@ -69,7 +69,7 @@ class App {
                     }
                 } else {
                     if($className==='PDO'){
-                        $dependencies =[DSN, USER,PASS];
+                        $dependencies =[$dsn, $user,$pass];
                         break;
                     };
                     $dependencies[] = $param->isDefaultValueAvailable()
