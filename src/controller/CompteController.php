@@ -86,7 +86,7 @@ class CompteController extends AbstractController
     }
 
     public function getCompte(){
-        $page= $_GET['page'] ? (int)$_GET['page'] : 1;
+        $page= (int)($_GET['page'] ?? 1);
         $userId = Utilisateur::toObject($this->session->get('user'))->getId();
         $comptePrincipal = Compte::toObject($this->session->get('compte'));
         $pagination = $this->compteService->getUserAllComptes($userId, $page, $comptePrincipal);
