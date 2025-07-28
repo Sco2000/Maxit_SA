@@ -1,6 +1,7 @@
 <?php
 
 namespace App\core;
+require_once '../app/config/bootstrap.php';
 
 use Symfony\Component\Yaml\Yaml;
 use ReflectionClass;
