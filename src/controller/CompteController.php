@@ -90,7 +90,7 @@ class CompteController extends AbstractController
         $userId = Utilisateur::toObject($this->session->get('user'))->getId();
         $comptePrincipal = Compte::toObject($this->session->get('compte'));
         $pagination = $this->compteService->getUserAllComptes($userId, $page, $comptePrincipal);
-        var_dump($pagination); die;
+        // var_dump($pagination); die;
         if($pagination){
             extract($pagination);
             if(count($comptes) > 0 && isset($pages)){
