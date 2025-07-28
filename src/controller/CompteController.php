@@ -74,7 +74,7 @@ class CompteController extends AbstractController
         $newCompte = $this->compteService->addSecondaryCompte($telephone, $soldeCompte, (float)$solde, $typeCompte, $userId);
         // var_dump($newCompte); die;
         if(!$newCompte){
-            $errors = ['solde'=>'Solde insuffisant'];
+            $errors = ['solde'=>'Erreur lors de la création du compte. Il se peut que ce soit lié au solde.'];
             $this->session->set('errors', $errors);
             header('Location: /form_add_compte');
             exit;

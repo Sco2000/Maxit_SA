@@ -21,10 +21,10 @@
         }
     </script>
 </head>
-<body class="w-full h-[100vh] absolute flex">
+<body class="w-full h-[100vh] Z-1000 absolute flex">
     <?php  require_once "../templates/layout/partial/sideBar.html.php";?>
     
-    <div class="w-[1500px] relative left-[338px]">
+    <div class="w-[1500px] relative z-0 left-[338px]">
     <?php  echo $containForLayout;?>
     </div>
 </body>

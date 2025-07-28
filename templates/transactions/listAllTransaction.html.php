@@ -1,7 +1,7 @@
 <?php $compte=$this->session->get('compte'); extract($compte);?>
 <?php $pagination=$this->session->get('all_transactions'); extract($pagination);?>
 
-<div class="min-h-screen absolute right-0 w-[1500px] bg-gradient-to-br from-slate-50 to-blue-50">
+<div class="min-h-screen z-0 absolute right-0 w-[1500px] bg-gradient-to-br from-slate-50 to-blue-50">
     <div class="w-full flex-1 flex flex-col p-6 mx-auto">
         <!-- Header Section -->
         <div class="bg-white rounded-2xl shadow-lg p-8 mb-8 border border-slate-200">

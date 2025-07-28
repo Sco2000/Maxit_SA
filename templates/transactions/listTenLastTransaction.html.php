@@ -2,7 +2,7 @@
 <?php $transactions=$this->session->get('ten_last_transactions'); ?>
 <?php $user=$this->session->get('user'); extract($user);  ?>
 
-<div class="min-h-screen absolute w-full bg-gradient-to-br from-slate-50 to-blue-50">
+<div class="min-h-screen z-0 absolute w-full bg-gradient-to-br from-slate-50 to-blue-50">
     <div class="w-full flex-1 flex flex-col p-6  mx-auto">
         <!-- Header Section -->
         <div class="bg-white rounded-2xl shadow-lg p-4 mb-8 border border-slate-200">

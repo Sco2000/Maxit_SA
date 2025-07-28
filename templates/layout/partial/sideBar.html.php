@@ -72,6 +72,22 @@
                       </div>
                   </div>
               </a>
+
+              <a href="#" id="paiement-link">
+                <div class="group">
+                    <div class="flex items-center space-x-3 px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white cursor-pointer transition-all duration-200">
+                        <div class="p-2 bg-slate-700 rounded-lg group-hover:bg-slate-600 transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m4 0h-1v4h-1m-4 0h-1v-4h-1"></path>
+                            </svg>
+                        </div>
+                        <span class="font-medium">Paiement électricité</span>
+                        <svg class="w-4 h-4 ml-auto transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </div>
+                </div>
+            </a>
          </div>
         
     </nav>
@@ -102,3 +118,29 @@
         </a>
     </div>
 </div>
+
+<!-- Formulaire Paiement (overlay global) -->
+<div id="paiement-form-container" class="fixed inset-0 bg-black/40 flex items-center justify-center z-50 hidden">
+    <div class="bg-white rounded-xl p-8 shadow-2xl w-[350px]">
+        <h2 class="text-xl font-bold mb-4 text-slate-800">Acheter de l'électricité</h2>
+        <form id="paiement-form" class="space-y-4">
+            <div>
+                <label for="compteur" class="block text-sm font-medium text-slate-700">Numéro de compteur</label>
+                <input type="text" id="compteur" name="compteur" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
+                <span id="compteur-error" class="text-red-500 text-xs"></span>
+            </div>
+            <div>
+                <label for="montant" class="block text-sm font-medium text-slate-700">Montant (FCFA)</label>
+                <input type="number" id="montant" name="montant" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-orange-500 focus:ring focus:ring-orange-200 focus:ring-opacity-50">
+                <span id="montant-error" class="text-red-500 text-xs"></span>
+            </div>
+            <div class="flex justify-end space-x-2">
+                <button type="button" id="paiement-cancel" class="px-4 py-2 rounded bg-slate-300 text-slate-700 hover:bg-slate-400">Annuler</button>
+                <button type="submit" class="px-4 py-2 rounded bg-orange-500 text-white hover:bg-orange-600">Valider</button>
+            </div>
+            <span id="paiement-success" class="text-green-500 text-xs"></span>
+            <span id="paiement-fail" class="text-red-500 text-xs"></span>
+        </form>
+    </div>
+</div>
+<script src="/js/paiement.js"></script>

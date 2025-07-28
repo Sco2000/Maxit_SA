@@ -1,7 +1,7 @@
 <?php $pagination = $this->session->get('all_comptes'); if($pagination) extract($pagination) ?>
 <?php $error = $this->session->get('error'); $this->session->unset('error'); ?>
 <?php $success = $this->session->get('success'); $this->session->unset('success'); ?>
-<div class="min-h-screen absolute w-full bg-gradient-to-br from-slate-50 to-blue-50">
+<div class="min-h-screen z-0 absolute w-full bg-gradient-to-br from-slate-50 to-blue-50">
     <div class="w-full flex-1 flex flex-col p-6 mx-auto">
         <!-- Header Section -->
         <div class="bg-white rounded-2xl shadow-lg p-6 mb-8 border border-slate-200">
