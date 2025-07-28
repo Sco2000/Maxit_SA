@@ -28,50 +28,88 @@ try {
     echo "✅ Profils insérés\n";
 
     // 2. Utilisateurs
-    $utilisateurs = [
-        ['Fallou', 'Ndiaye', 'admin@maxitsa.sn', 'passer123', 'CNI001', 'recto1.png', 'verso1.png', 'Dakar Liberté 6'],
-        ['Ousmane', 'Marra', 'ousmane@maxitsa.sn', 'passer123', 'CNI002', 'recto2.png', 'verso2.png', 'Dakar Médina'],
-        ['Astou', 'Mbow', 'astou@maxitsa.sn', 'passer123', 'CNI003', 'recto3.png', 'verso3.png', 'Rufisque'],
-        ['Thierno', 'Sagnane', 'thierno@maxitsa.sn', 'passer123', 'CNI004', 'recto4.png', 'verso4.png', 'Ziguinchor'],
-        ['Bamba', 'Thiam', 'bamba@maxitsa.sn','passer123', 'CNI005', 'recto5.png', 'verso5.png', 'Kaolack'],
-        ['Faby', 'Sow', 'faby@maxitsa.sn', 'passer123', 'CNI006', 'recto6.png', 'verso6.png', 'Touba']
-    ];
-    $stmtUser = $pdo->prepare("INSERT INTO utilisateurs (nom, prenom, login, password, numerocarteidentite, photorecto, photoverso, adresse) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+    $utilisateurs = [['id'=>1,'nom'=>'Marra','prenom'=>'Ousmane','login'=>'ousmane','password'=>'ousmane00','numerocarteidentite'=>'1870200000502','photorecto'=>'hello.jpg','photoverso'=>'hello.jpg','adresse'=>'Rufique','profilid'=>1]];
+
+    $stmtUser = $pdo->prepare("INSERT INTO utilisateurs (id, nom, prenom, login, password, numerocarteidentite, photorecto, photoverso, adresse, profilid) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     $userIds = [];
     foreach ($utilisateurs as $u) {
-        $stmtUser->execute($u);
-        $userIds[] = $pdo->lastInsertId();
+        $stmtUser->execute(
+        [$u['id'],
+        $u['nom'],
+        $u['prenom'],
+        $u['login'],
+        $u['password'],
+        $u['numerocarteidentite'],
+        $u['photorecto'],
+        $u['photoverso'],
+        $u['adresse'],
+        $u['profilid']]);
     }
     echo "✅ Utilisateurs insérés\n";
 
     // 3. Comptes
     $comptes = [
-        ['770000001', 'principal', 150000, $userIds[0]],
-        ['770000002', 'principal', 120000, $userIds[1]],
-        ['770000003', 'principal', 20000, $userIds[2]],
-        ['770000004', 'principal', 80000, $userIds[3]],
-        ['770000005', 'principal', 30000, $userIds[4]],
-        ['770000006', 'principal', 100000, $userIds[5]],
+        ['id' => 1,'datecreation' => '2025-07-17 21:37:39.001863','solde' => 10000.00,'telephone' => '774368884','typecompte' => 'principal','utilisateurid' => 1],
+        ['id' => 2,'datecreation' => '2025-07-17 21:49:51.298761','solde' => 10000.00,'telephone' => '775071912','typecompte' => 'secondaire','utilisateurid' => 1],
+        ['id' => 3,'datecreation' => '2025-07-17 21:51:52.669186','solde' => 10000.00,'telephone' => '775583233','typecompte' => 'secondaire','utilisateurid' => 1],
+        ['id' => 4,'datecreation' => '2025-07-17 22:25:40.871562','solde' => 10000.00,'telephone' => '778801947','typecompte' => 'secondaire','utilisateurid' => 1],
+        ['id' => 5,'datecreation' => '2025-07-18 12:34:02.98374','solde' => 10000.00,'telephone' => '784541151','typecompte' => 'secondaire','utilisateurid' => 1],
+        ['id' => 6,'datecreation' => '2025-07-19 01:02:27.837006', 'solde' => 0.00,'telephone' => '771022723','typecompte' => 'secondaire','utilisateurid' => 1]
     ];
-    $stmtCompte = $pdo->prepare("INSERT INTO comptes (telephone, typecompte, solde, utilisateurid) VALUES (?, ?, ?, ?)");
+;
+    $stmtCompte = $pdo->prepare("INSERT INTO comptes (id, datecreation, solde, telephone, typecompte, utilisateurid) VALUES (?, ?, ?, ?, ?, ?)");
     $compteIds = [];
     foreach ($comptes as $compte) {
-        $stmtCompte->execute($compte);
-        $compteIds[] = $pdo->lastInsertId();
+        $stmtCompte->execute([
+            $compte['id'],
+            $compte['datecreation'],
+            $compte['solde'],
+            $compte['telephone'],
+            $compte['typecompte'],
+            $compte['utilisateurid']
+        ]);
     }
     echo "✅ Comptes insérés\n";
 
     // 4. Transactions
     $transactions = [
-        ['2025-07-18 12:00:00', 'paiement', 10000, $compteIds[0]],
-        ['2025-07-18 14:00:00', 'retrait', 5000, $compteIds[1]],
-        ['2025-07-18 15:00:00', 'depot', 20000, $compteIds[2]],
-        ['2025-07-18 16:00:00', 'paiement', 15000, $compteIds[3]],
-        ['2025-07-18 17:00:00', 'retrait', 10000, $compteIds[4]],
+        ['id' => 1, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'depot', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 2, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'retrait', 'montant' => 2000.00, 'compteid' => 1],
+        ['id' => 3, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'paiement', 'montant' => 1000.00, 'compteid' => 1],
+        ['id' => 4, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'depot', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 5, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'depot', 'montant' => 5000.00, 'compteid' => 1],
+        ['id' => 6, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'paiement', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 7, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'depot', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 8, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'retrait', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 9, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'retrait', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 10, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'depot', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 11, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'depot', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 12, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'retrait', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 13, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'paiement', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 14, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'depot', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 15, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'depot', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 16, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'paiement', 'montant' => 25000.00, 'compteid' => 1],
+        ['id' => 17, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'depot', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 18, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'depot', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 19, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'retrait', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 20, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'retrait', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 21, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'depot', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 22, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'depot', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 23, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'retrait', 'montant' => 7000.00, 'compteid' => 1],
+        ['id' => 24, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'paiement', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 25, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'depot', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 26, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'depot', 'montant' => 10000.00, 'compteid' => 1],
+        ['id' => 27, 'date' => '2025-07-17 21:47:53.028119', 'typetransaction' => 'paiement', 'montant' => 10000.00, 'compteid' => 1],
     ];
-    $stmtTrx = $pdo->prepare("INSERT INTO transactions (date, typetransaction, montant, compteid) VALUES (?, ?, ?, ?)");
+    $stmtTrx = $pdo->prepare("INSERT INTO transactions (id, date, typetransaction, montant, compteid) VALUES (?, ?, ?, ?, ?)");
     foreach ($transactions as $trx) {
-        $stmtTrx->execute($trx);
+        $stmtTrx->execute([
+            $trx['id'],
+            $trx['date'],
+            $trx['typetransaction'],
+            $trx['montant'],
+            $trx['compteid']
+        ]);
     }
     echo "✅ Transactions insérées\n";
 
