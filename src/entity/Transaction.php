@@ -60,6 +60,6 @@ class Transaction extends AbstractEntity
     }
 
     public static function toObject(array $data): static {
-        return new static($data['id'], $data['date'], $data['montant'], TypeTransaction::from($data['typetransaction']));
+        return new static(TypeTransaction::from($data['typetransaction']), $data['id'], $data['date'], $data['montant']);
     }
 }
