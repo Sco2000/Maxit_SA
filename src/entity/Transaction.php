@@ -11,7 +11,7 @@ class Transaction extends AbstractEntity
     private float $montant;
     private TypeTransaction $typeTransaction;
 
-    public function __construct(int $id = 0, string $date = '', float $montant = 0.00, TypeTransaction $typeTransaction){
+    public function __construct(TypeTransaction $typeTransaction, int $id = 0, string $date = '', float $montant = 0.00){
         $this->id=$id;
         $this->date=$date;
         $this->montant=$montant;
