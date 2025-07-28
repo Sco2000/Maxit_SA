@@ -1,23 +1,17 @@
 <?php
 
 namespace App\service;
-use App\repository\UtilisateurRepository;
 use App\core\App;
+use App\core\Singleton;
+use App\repository\UtilisateurRepository;
 
-class SecurityService{
+class SecurityService extends Singleton{
     private UtilisateurRepository $utilisateurRepository;
     private static ?SecurityService $instance = null;
 
-    public function __construct(){
-        $this->utilisateurRepository = App::getDependency('UtilisateurRepository');
+    private function __construct(UtilisateurRepository $utilisateurRepository){
+        $this->utilisateurRepository = $utilisateurRepository;
     }
-
-    public static function getInstance(): self{
-        if(self::$instance === null){
-            self::$instance = new self();
-        }
-        return self::$instance;
-    }  
 
     public function getAll($login, $password){
         return $this->utilisateurRepository->selectUserByLoginandPassword($login, $password);

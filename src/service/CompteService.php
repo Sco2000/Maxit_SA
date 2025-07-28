@@ -1,15 +1,16 @@
 <?php
 
 namespace App\service;
-use App\repository\CompteRepository;
 use App\core\App;
+use App\core\Singleton;
 use App\entity\TypeCompte;
+use App\repository\CompteRepository;
 
-class CompteService
+class CompteService extends Singleton
 {
     private CompteRepository $compteRepository;
-    public function __construct(){
-        $this->compteRepository = App::getDependency('CompteRepository');
+    private function __construct(CompteRepository $compteRepository){
+        $this->compteRepository = $compteRepository;
     }
 
     public function getUserCompte($userId){
@@ -38,7 +39,7 @@ class CompteService
     }
 
     public function getUserAllComptes($userId, $page, $comptePrincipal, $limit=5): ?array{
-        $total = $this->compteRepository->CountAllCompteByUserId($userId);
+        $total = $this->compteRepository->CountAll($userId);
         // var_dump($total); die;
         extract($total);
         $pages = (int) ceil($total/$limit);

@@ -1,16 +1,17 @@
 <?php
 
 namespace App\service;
-use App\repository\TransactionRepository;
 use App\core\App;
+use App\core\Singleton;
 use App\entity\Transaction;
+use App\repository\TransactionRepository;
 
-class TransactionService
+class TransactionService extends Singleton implements ITransactionService
 {
     private TransactionRepository $transactionRepository;
 
-    public function __construct(){
-        $this->transactionRepository = App::getDependency('TransactionRepository');
+    private function __construct(TransactionRepository $transactionRepository){
+        $this->transactionRepository = $transactionRepository;
     }
 
     public function getTenLastTransaction(int $id): array{
@@ -22,7 +23,7 @@ class TransactionService
     }
 
     public function getAllTransactions(int $id): array{
-        $transactions = $this->transactionRepository->selectAllUserTransactions($id);
+        $transactions = $this->transactionRepository->selectAllCompteTransactions($id);
         $transactionsObjet = array_map(function ($transaction) {
             return Transaction::toObject($transaction);
         }, $transactions);
@@ -30,7 +31,7 @@ class TransactionService
     }
 
     public function getTransactionsPaginate($compteId, $page, $limit=6){
-        $total = $this->transactionRepository->countAllTransactions($compteId);
+        $total = $this->transactionRepository->countAll($compteId);
         extract($total);
         $pages = (int) ceil($total/$limit);
         $transactions=$this->transactionRepository->selectPaginateTransaction($compteId, $page, $limit);

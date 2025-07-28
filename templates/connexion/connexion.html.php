@@ -1,4 +1,5 @@
 <?php $errors = $this->session->get('errors'); $this->session->unset('errors'); ?>
+
 <div class="min-h-screen w-full flex items-center justify-center p-4">
     <div class="w-full max-w-md">
         <!-- Main Card -->
@@ -88,7 +89,7 @@
 
                     <!-- Submit Button -->
                     <div class="pt-4">
-                        <button 
+                        <button
                             type="submit" 
                             class="w-full bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold py-3 px-6 rounded-xl hover:from-orange-600 hover:to-red-600 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
                         >
@@ -115,7 +116,7 @@
                             Pas encore de compte? 
                         </p>
                         <a 
-                            href="#" 
+                            href="<?php $url ?>charger_form_carte_indentite" 
                             class="inline-flex items-center mt-2 text-orange-600 hover:text-orange-700 font-semibold transition-colors duration-200 space-x-1"
                         >
                             <span>Créer un compte</span>
@@ -129,3 +130,20 @@
         </div>
     </div>
 </div>
+<!-- <script>
+    function validateForm(event) {
+        event.preventDefault(); // bloque l'envoi du formulaire
+        fetch("http://localhost:8000/CNI001")
+            .then(response => response.json())
+            .then(data => {
+                console.log("Client récupéré :", data);
+                // tu peux débloquer l'envoi ici si tu veux
+                // event.target.submit();
+            })
+            .catch(error => {
+                console.error("Erreur :", error);
+            });
+
+        return false; // bloque encore l'envoi par sécurité
+    }
+</script> -->

@@ -2,18 +2,19 @@
 
 namespace App\repository;
 use App\core\App;
+use App\core\abstract\AbstractRepository;
 use App\core\Database;
 use App\entity\Compte;
 use App\entity\TypeCompte;
 use App\repository\UtilisateurRepository;
 
-class CompteRepository
+
+class CompteRepository extends AbstractRepository implements ICompteRepository
 {
-    protected Database $db;
-    protected UtilisateurRepository $utilisateurRepository;
-    public function __construct(){
-        $this->db = App::getDependency('Database');
-        $this->utilisateurRepository = App::getDependency('UtilisateurRepository');
+    private UtilisateurRepository $utilisateurRepository;
+    public function __construct(UtilisateurRepository $utilisateurRepository, Database $db){
+        parent::__construct($db);
+        $this->utilisateurRepository = $utilisateurRepository;
     }
 
     public function selectCompteById($userId): ?Compte{
@@ -111,12 +112,12 @@ class CompteRepository
         }
     }
 
-    public function CountAllCompteByUserId($userId){
+    public function CountAll($id){
         try {
             $sql = "SELECT COUNT(*) as total FROM comptes WHERE utilisateurId = :userId AND typecompte = :typecompte";
             $stmt = $this->db->pdo->prepare($sql);
             $stmt->execute([
-                ':userId' => $userId,
+                ':userId' => $id,
                 'typecompte' => TypeCompte::SECONDAIRE->value
             ]);
             $result = $stmt->fetch(\PDO::FETCH_ASSOC);

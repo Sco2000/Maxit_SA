@@ -1,22 +1,15 @@
 <?php
 namespace App\core;
 
+use App\core\Singleton;
 
-class Session{
-    private static ?Session $instance = null; 
+
+class Session extends Singleton{
 
     private function __construct(){
         if(session_status()===PHP_SESSION_NONE){
             session_start();
         }
-    }
-
-     public static function getInstance():self{
-        if(self::$instance===null){
-            self::$instance = new self();
-        }
-        return self::$instance;
-
     }
 
     public static function set($key, $data){
@@ -41,7 +34,7 @@ class Session{
     public static function destroy(){
         session_unset();
         session_destroy();
-        self::$instance = null;
+        static::removeInstance();
 
     }
 

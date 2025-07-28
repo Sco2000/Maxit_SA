@@ -1,19 +1,20 @@
 <?php
 
 namespace App\controller;
+use App\core\App;
+use App\core\Session;
+use App\entity\Compte;
+use App\entity\TypeCompte;
+use App\entity\Utilisateur;
 use App\service\CompteService;
 use App\core\abstract\AbstractController;
-use App\core\App;
-use App\entity\Utilisateur;
-use App\entity\TypeCompte;
-use App\entity\Compte;
 
 class CompteController extends AbstractController
 {
     private CompteService $compteService;
-    public function __construct(){
-        parent::__construct();
-        $this->compteService = App::getDependency('CompteService');
+    public function __construct(CompteService $compteService, Session $session){
+        parent::__construct($session);
+        $this->compteService = $compteService;
     }
 
     public function getPrincipalCompte(){

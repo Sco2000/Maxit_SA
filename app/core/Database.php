@@ -3,24 +3,17 @@
 namespace App\core;
 use PDO;
 use PDOException;
+use App\core\Singleton;
 
-class Database{
+class Database extends Singleton{
     public PDO $pdo;
-    private static ?Database $instance = null;
 
-    public function __construct(){
+    private function __construct(PDO $pdo){
         try{
-            $this->pdo = new PDO(DSN, USER, PASS);
+            $this->pdo = $pdo;
             // echo "Connected to the database";
         }catch(PDOException $e){
             echo "Error: " . $e->getMessage();
         }
-    }
-
-    public static function getInstance(): self{
-        if(self::$instance === null){
-            self::$instance = new self();
-        }
-        return self::$instance;
     }
 }

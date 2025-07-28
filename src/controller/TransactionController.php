@@ -1,18 +1,19 @@
 <?php
 
 namespace App\controller;
-use App\service\TransactionService;
 use App\core\App;
-use App\core\abstract\AbstractController;
+use App\core\Session;
 use App\entity\Compte;  
+use App\service\TransactionService;
+use App\core\abstract\AbstractController;
 
 class TransactionController extends AbstractController
 {
     private TransactionService $transactionService;
 
-    public function __construct(){
-        $this->transactionService = App::getDependency('TransactionService');
-        $this->session = App::getDependency('Session');
+    public function __construct(TransactionService $transactionService, Session $session){
+        parent::__construct($session);
+        $this->transactionService = $transactionService;
     }
 
     public function getTenLastTransaction(){

@@ -9,7 +9,7 @@ class Auth
     
 
     public function __invoke() {
-        $session = App::getDependency('Session');
+        $session = Session::getInstance();
         if (!$session->get('user') ) {
             header('Location: /');
             exit();

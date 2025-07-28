@@ -1,17 +1,19 @@
 <?php
 
 namespace App\controller;
-use App\core\abstract\AbstractController;
-use App\service\SecurityService;
 use App\core\App;
+use App\core\Session;
+use App\service\SecurityService;
+use App\core\abstract\AbstractController;
+
 
 class SecurityController extends AbstractController
 {
     private SecurityService $securityService;
-    public function __construct(){
-        parent::__construct();
+    public function __construct(SecurityService $securityService, Session $session){
+        parent::__construct($session);
         $this->commonLayout = 'security';
-        $this->securityService = App::getDependency('SecurityService');
+        $this->securityService = $securityService;
     }
     public function index(){
         $this->render('connexion/connexion');;
@@ -46,6 +48,15 @@ class SecurityController extends AbstractController
             $this->session->set('errors', ['login' => 'Identifiants invalides']);
             header('Location: /');
         }
+    }
+
+    public function inscription(){
+        // var_dump($_POST); die;
+        // $this->render("connexion/inscription");
+    }
+
+    public function identification(){
+         $this->render("connexion/form.identite");
     }
 
     public function logout(){

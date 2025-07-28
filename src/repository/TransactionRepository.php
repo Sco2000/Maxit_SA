@@ -2,14 +2,15 @@
 
 namespace App\repository;
 use App\core\App;
+use App\core\abstract\AbstractRepository;
 use App\core\Database;
 
-class TransactionRepository
+class TransactionRepository extends AbstractRepository implements ITransactionRepository, ITransactionCompteRepository
 {
-    private Database $db;
+    
 
-    public function __construct(){
-        $this->db = App::getDependency('Database');
+    public function __construct(Database $db){
+        parent::__construct($db);
     }
 
     public function selectCompteTenLastTransaction(int $id): array{
@@ -25,7 +26,7 @@ class TransactionRepository
         return $transactions;
     }
 
-    public Function selectAllUserTransactions($id): array{
+    public Function selectAllCompteTransactions($id): array{
         try {
             $sql = "SELECT * FROM transactions WHERE compteId = :id";
             $stmt = $this->db->pdo->prepare($sql);
@@ -58,11 +59,11 @@ class TransactionRepository
         }
     }
 
-    public function countAllTransactions($compteId){
+    public function countAll($id){
         try {
             $sql = "SELECT COUNT(*) as total FROM transactions WHERE compteId = :id";
             $stmt=$this->db->pdo->prepare($sql);
-            $stmt->execute([':id'=>$compteId]);
+            $stmt->execute([':id'=>$id]);
             $result = $stmt->fetch(\PDO::FETCH_ASSOC);
             // var_dump($result); die;
             return $result;

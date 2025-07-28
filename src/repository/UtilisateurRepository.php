@@ -3,23 +3,14 @@
 namespace App\repository;
 use App\core\Database;
 use App\core\App;
+use App\core\abstract\AbstractRepository;
 use App\entity\Utilisateur;
 
 
-class UtilisateurRepository
+class UtilisateurRepository extends AbstractRepository
 {
-    private Database $db;
-    private static ?UtilisateurRepository $instance = null;
-
-    public function __construct(){
-        $this->db = App::getDependency('Database');
-    }
-
-    public static function getInstance(): self{
-        if(self::$instance === null){
-            self::$instance = new self();
-        }
-        return self::$instance;
+    public function __construct(Database $db){
+        parent::__construct($db);
     }
 
     public function selectUserByLoginandPassword($login, $password){

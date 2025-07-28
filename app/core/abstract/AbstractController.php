@@ -8,8 +8,8 @@ abstract class AbstractController
     protected $commonLayout = 'base';
     protected Session $session;
 
-    protected function __construct(){
-        $this->session = App::getDependency('Session');
+    protected function __construct(Session $session){
+        $this->session = $session;
     }
 
     public abstract function index();

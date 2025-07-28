@@ -72,5 +72,13 @@ $routes = [
         'controller' => CompteController::class,
         'method' => 'setPrincipal',
         'middleware' => 'auth'
-    ]
+    ],
+    '/charger_page_inscription' => [
+        'controller' => SecurityController::class,
+        'method'=> 'inscription'
+    ],
+    '/charger_form_carte_indentite'=> [
+        'controller' => SecurityController::class,
+        'method'=> 'identification'
+    ],
 ]; 

@@ -1,4 +1,0 @@
-DB_USER = ousmane
-DB_PASS = ousmane00
-DSN = pgsql:host=localhost;dbname=Maxit_SA;port=5432
-URL = http://localhost:8000/
