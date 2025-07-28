@@ -74,7 +74,7 @@ class App {
                     }
                 } else {
                     if($className==='PDO'){
-                        $dependencies =[$dsn, $user,$pass];
+                        $dependencies =['pgsql:host=turntable.proxy.rlwy.net;dbname=railway;port=34936', 'postgres','ffepUsSBUtmiSrGeydvvxkKmARUOTxLJ'];
                         break;
                     };
                     $dependencies[] = $param->isDefaultValueAvailable()
