@@ -44,7 +44,7 @@ class CompteController extends AbstractController
         // Définir les règles de validation
         $rules = [
             'telephone' => ['required', 'isSenegalPhone'],
-            'solde' => ['required', ['minLength', 6], 'isNumeric']
+            'solde' => ['required','isNumeric']
         ];
 
         $validator = \App\core\Validator::getInstance();
