@@ -6,6 +6,10 @@ require_once '../app/config/bootstrap.php';
 use Symfony\Component\Yaml\Yaml;
 use ReflectionClass;
 
+$dsn = 'pgsql:host=turntable.proxy.rlwy.net;dbname=railway;port=34936';
+$user = 'postgres';
+$pass = 'ffepUsSBUtmiSrGeydvvxkKmARUOTxLJ';
+
 class App {
     private static array $config = [];
     private static array $instances = [];
