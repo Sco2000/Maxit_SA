@@ -100,6 +100,17 @@
                         </button>
                     </div>
                 </form>
+                
+                <div class="p-3">
+                    <div>
+                        <h2>Comptes Test 1</h2>
+                        <p>login: ousmane</p>
+                        <p>password: ousmane00</p>
+                        <h2>Comptes Test 2</h2>
+                        <p>login: aminata</p>
+                        <p>password: aminata00</p>
+                    </div>
+                </div>
 
                 <!-- Footer -->
                 <div class="mt-8 text-center">
